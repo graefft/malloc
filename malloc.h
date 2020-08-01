@@ -3,8 +3,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
-#include <string.h>
 #include <unistd.h>
 
 #define PAGE_SIZE sysconf(_SC_PAGESIZE)
@@ -21,7 +19,7 @@
  * @data: block data
  * @ptr: pointer
  */
-typedef struct block_s
+typedef struct block
 {
 	size_t size;
 	struct block *next;
@@ -31,9 +29,9 @@ typedef struct block_s
 	void *ptr;
 } block;
 
-#define BLOCK_SIZE sizeof(struct block)
+#define BLOCK_SIZE sizeof(block)
+
 void *naive_malloc(size_t size);
-void *_malloc(size_t size);
 void _free(void *ptr);
 void *_calloc(size_t nmemb, size_t size);
 void *_realloc(void *ptr, size_t size);

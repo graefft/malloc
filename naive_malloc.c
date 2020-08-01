@@ -10,7 +10,7 @@ static void *base;
  */
 void split_block(struct block *chunk, size_t size)
 {
-	struct block *new_block;
+	block *new_block;
 
 	new_block = (struct block *)(chunk->data + size);
 	new_block->size = chunk->size - BLOCK_SIZE;
@@ -33,7 +33,7 @@ void split_block(struct block *chunk, size_t size)
  */
 block *find_unused_block(struct block **last, size_t size)
 {
-	struct block *traverse = base;
+	block *traverse = base;
 
 	while (traverse && !(traverse->free && traverse->size >= size))
 	{
@@ -52,7 +52,7 @@ block *find_unused_block(struct block **last, size_t size)
  */
 block *extend_heap(struct block *last, size_t size)
 {
-	struct block *chunk;
+	block *chunk;
 	void *test;
 
 	chunk = sbrk(0);
@@ -78,8 +78,8 @@ block *extend_heap(struct block *last, size_t size)
  */
 void *naive_malloc(size_t size)
 {
-	struct block *chunk;
-	struct block *last;
+	block *chunk;
+	block *last;
 
 	size = align(size);
 	if (base)
