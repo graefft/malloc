@@ -10,7 +10,7 @@
 #define align(x) ((x % 8) ? (x + (8 - x % 8)) : x)
 
 /**
- * struct block_s - stores information about blocks
+ * struct block - stores information about blocks
  *
  * @size: size of block
  * @next: pointer to next block
